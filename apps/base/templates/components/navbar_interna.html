@@ -1,0 +1,15 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg fixed-top navbarinterna">
+  <div class="container-fluid collapse navbar-collapse m-2">
+    <a class="navbar-brand" onclick="location.href='{% url 'interno_index' %}'">
+      <img src="{% static 'base/images/rn-logo-preta.png' %}" width="130" alt="" loading="lazy" />
+    </a>
+    <a class="navbar-toggler border-0" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+      aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="link-light fas fa-align-left fa-2x me-3"></i>
+    </a>
+  </div>
+</nav>
+
+{% include "components/sidebar.html" %}

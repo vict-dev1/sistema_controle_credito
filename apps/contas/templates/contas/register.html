@@ -1,0 +1,31 @@
+{% extends 'components/base_auth.html' %}
+{% block title %}Login{% endblock %}
+{% block content_auth %}
+<form class="row" method="post" action="{% url 'register' %}">
+    {% csrf_token %}
+    <h4>Crie a sua conta!</h4>
+		 {% for field in form %}
+          {% if field == form.email %}
+          <div class="col-md-12">
+              <div class="mt-3">
+              {{ field.label_tag }}
+              {{ field }}
+              </div>
+          </div>
+          {% endif %}
+          {% if not field == form.email %}
+          <div class="col-md-6">
+              <div class="mt-3">
+              {{ field.label_tag }}
+              {{ field }}
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+    <button class="btn mt-3" style="background-color: #539F3F; color: white;" ; type="submit">Registrar</button>
+    <br>
+    <div class="mt-3">
+        <span><a class="text-reset" href="{% url 'login' %}">Fazer Login</a></span>
+    </div>  
+</form>  
+{% endblock %}

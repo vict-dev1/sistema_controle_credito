@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de DComp</title>
+    <!-- Adicione o Axios via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- Conteúdo da tabela -->
+    <div id="app">
+        <table id="dcomp-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Empresa</th>
+                    <th>Número Perdcomp</th>
+                    <th>Data de Criação</th>
+                </tr>
+            </thead>
+            <tbody id="dcomp-table-body">
+                <!-- Linhas da tabela geradas dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+    <!-- Script que utiliza Axios -->
+    <script>
+        function fetchDcompData() {
+            axios.get('/api/perdcomp/dcomp/')
+                .then(response => {
+                    const data = response.data.results; // Ajuste conforme a estrutura de resposta da API
+                    const tableBody = document.getElementById('dcomp-table-body');
+                    tableBody.innerHTML = '';
+                    data.forEach((item, index) => {
+                        const row = `
+                            <tr>
+                                <td>${index + 1}</td>
+                                <td>${item.empresa}</td>
+                                <td>${item.numero_perdcomp}</td>
+                                <td>${item.data_criacao}</td>
+                            </tr>
+                        `;
+                        tableBody.innerHTML += row;
+                    });
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar dados:', error);
+                    alert('Não foi possível carregar os dados.');
+                });
+        }
+
+        // Chamar a função ao carregar a página
+        document.addEventListener('DOMContentLoaded', fetchDcompData);
+    </script>
+</body>
+</html>

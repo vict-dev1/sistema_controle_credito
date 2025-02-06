@@ -1,0 +1,216 @@
+@import url('global.css');
+
+.bloco {
+    margin: 70px 0px 70px 0px;
+}
+
+.pagination .page-link {
+    background: rgb(138, 138, 138);
+    color: white;
+    border: none;
+}
+
+@media (min-width: 968px) {
+    .bloco {
+        padding-left: 250px;
+        }
+}
+
+@media (max-width: 968px) {
+    .offcanvas .btn-custom {
+        width: 96%; /* Faz os botões ocuparem toda a largura disponível */
+        margin: 7px 0; /* Margem vertical para espaçamento */
+    }
+
+    .offcanvas .navbar-nav {
+        text-align: center; /* Centraliza os itens do menu */
+    }
+
+    .offcanvas .nav-link {
+        padding: 15px 0; /* Adiciona preenchimento vertical para os links */
+
+    }
+    .offcanvas .navbar-brand {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+}
+
+.img-footer {
+    width: 170px;
+}
+
+.img-fluid{
+    width: 450px;
+
+}
+
+.fab,.img-footer2 {
+    width: 20px;
+}
+
+.navbar {
+    margin: 0; /* Remove margens */
+    padding: 0; /* Remove preenchimento */
+    border-radius: 0px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.4s ease-in-out; /* Transição suave ao aparecer/desaparecer */
+
+}
+
+/* Classe que oculta a navbar */
+.navbar.hidden {
+    top: -100px; /* Ajuste para ocultar a navbar fora da tela */
+}
+
+.navbar .nav-link{
+    color: #000000;
+
+}
+
+
+/* Efeito ao passar o mouse (hover) */
+.navbar .nav-link:hover {
+    color: #539F3F !important;  /* Muda para cinza claro ao passar o mouse */
+}
+
+.navbarinterna {
+    height: 64px;
+    background-color: #fff;
+    position: fixed;
+
+}
+
+p {
+ text-align: justify;
+ color: black;
+}
+
+.text-reset {
+    font-size: 14px;
+}
+
+body{
+    background-color: #FFFAFA;
+    font-family: 'Montserrat',roboto, sans-serif;
+}
+
+.btn-custom {
+    width: 130px;
+    height: 38px;
+    transition: width 0.7s ease-out;
+    background-color: #539F3F;
+    color: white;
+    border-color: #539F3F
+}
+
+.btn-custom:hover {
+    background-color: #539F3F; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao passar o mouse */
+    border-color: #539F3F;/* Cor da borda ao passar o mouse */
+    transition: width 0.7s ease-out;
+    width: 190px;
+
+}
+
+.login-box {
+    background-color: rgba(var(--bs-tertiary-bg-rgb));
+}
+
+
+.text-muted {
+    margin-top: 10px;  /* Reduz a margem acima do copyright */
+    margin-bottom: 0;  /* Remove a margem abaixo se necessário */
+    font-size: 0.9rem;  /* Tamanho do texto do copyright */
+    padding: 0;  /* Remove padding adicional, se houver */
+}
+
+.custom-link {
+    color: #000000;
+}
+
+.custom-link:hover {
+    color: #539F3F;
+}
+
+#Sobre {
+    display: flex;
+    align-items: center;  /* Alinha verticalmente ao centro */
+    justify-content: center;  /* Alinha horizontalmente ao centro */
+    height: 100vh;  /* Faz a div ocupar toda a altura da tela */
+}
+
+.btn-login {
+    width: 100%;
+    height: 45px;
+    background-color: #539F3F;
+    color: white;
+    border-color: #539F3F;
+}
+
+.mt-6{
+    margin-top: 73px;
+}
+
+.perfil-info{
+    background-color:rgba(var(--bs-tertiary-bg-rgb));
+    border: solid 1px;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+.paginaperfil{
+    border-radius: 18px;
+    height: vh-100;
+    padding-bottom: 30px;
+}
+
+.img-perfil {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.card-perfil {
+    border-radius: 12px;
+    background: rgb(63,106,52);
+    background: linear-gradient(90deg, rgba(73,149,53,1) 48%, rgba(85,164,64,1) 75%);
+}
+
+.btn-edit-post{
+    background: rgb(63,106,52);
+    background: linear-gradient(90deg, rgba(73,149,53,1) 48%, rgba(85,164,64,1) 75%);
+    border-radius: 12px;
+    color: #fff;
+    border-color: #fff;
+    height: 30px;
+    width: auto;
+    display: inline-flex;
+}
+
+.btn-edit-post:hover{
+    background: transparent; /* Cor de fundo ao passar o mouse */
+    color: #539F3F; /* Cor do texto ao passar o mouse */
+}
+
+.chamados{
+    background: rgb(113,113,113);
+    background: linear-gradient(90deg, rgba(113,113,113,1) 0%, rgba(122,122,122,1) 43%, rgba(113,113,113,1) 100%);
+    border-radius: 8px;
+    margin-top: 0.25rem;
+    padding: 0;
+
+}
+.chamados-text{
+    text-align: center;
+    color: white; 
+}

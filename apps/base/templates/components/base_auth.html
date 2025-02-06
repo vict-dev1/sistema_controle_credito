@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}Autenticação{% endblock %}
+
+{% block content %}
+
+<body>
+<div class="row vh-100 g-0">
+    <div class="col-lg-6 position-relative d-none d-lg-block" style="background-color: #3F9E4F;">
+        <div class="d-flex justify-content-center align-items-center h-100 me-3">
+            <h1 class="fw-bold display-4 text-white">Gestão segura <br> para seus créditos <br> tributários</h1>
+        </div>
+    </div>
+    <div class="col-lg-6 bg-body-tertiary">
+        <div class="row d-flex justify-content-center align-items-center px-5 h-100">
+            <div class="px-5">
+                <div class="col p-4 px-5">
+                    <a class="d-flex justify-content-center align-items-center mb-5 px-2">
+                        <img src="{% static 'base/images/mini-logo-preta.svg' %}" width="50" alt="Logo" loading="lazy"/>
+                    </a>
+                    {% include 'components/message.html' %}
+                    {% block content_auth %}{% endblock %}
+                    <div class="text-muted py-4 text-center">
+                        <small>Copyright© 2024 Victor Hugo</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

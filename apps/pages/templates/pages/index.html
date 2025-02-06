@@ -1,0 +1,144 @@
+{% extends 'base/base.html' %}
+{% block title %}Controle de Créditos{% endblock %}
+{% block content %}
+{% load static %}
+{% include "components/navbar.html" %}
+
+
+
+
+
+	<!-- Hero -->
+	<div class="container-fluid hero-header bg-body-tertiary vh-100" style="margin-top: 80px;" id="Home">
+		<div class="container h-100 bg-body-tertiary">
+			<div class="row g-5 align-items-center">
+				<div class="col-lg-7 text-center text-lg-start">
+					<h1 class="my-2 display-3 fw-bold ls-tight">
+						Gestão segura <br />
+						<span style="color: #539F3F">para seus créditos tributários</span>
+					</h1>
+					<p class="text pb-3 animated zoomIn" style="color: black">
+						Estamos felizes em tê-lo conosco. Nosso sistema foi desenvolvido para proporcionar um acesso seguro e centralizado a todas as informações sobre seus créditos fiscais. Ao fazer login, você poderá consultar seus saldos atualizados de forma rápida e fácil, além de monitorar suas transações e atividades, garantindo total transparência em sua gestão fiscal. Explore todas as funcionalidades do sistema e aproveite uma gestão mais organizada de seus créditos tributários. Se precisar de assistência, nossa equipe está à disposição para ajudar!
+					</p>
+					<a href="" class="btn btn-custom">Saiba mais</a>
+				</div>
+				<div class="col-lg-5 text-end mt-1">
+					<img class="" src="{% static 'base/images/hero.png' %}" width="530px" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Sobre -->
+	<div class="container-fluid bg-body-tertiary py-5 vh-100 align-items-center" id="Sobre">
+		<div class="container">
+			<div class="row g-5 align-items-center">
+				<div class="col-lg-5">
+					<img class="img-fluid" src="{% static 'base/images/rn-logo-colorida.png' %}" alt="Imagem da nova seção 1">
+				</div>
+				<div class="col-lg-7">
+					<h2 class="fw-bold">Como tudo começou</h2>
+					<p>Desde nossa fundação, a Rosa Neto se compromete a impulsionar o crescimento da economia nacional por meio de estratégias de planejamento tributário inteligentes. Com uma trajetória que começou em 2018, nosso time de contadores e advogados tem ajudado empresas de todos os portes a otimizar seus processos financeiros. Utilizamos tecnologias de ponta para simplificar e acelerar as demandas tributárias, garantindo que nossos clientes não apenas economizem tempo, mas também alcancem resultados significativos e sustentáveis. Cada projeto é tratado com uma abordagem personalizada, respeitando o cenário específico e os objetivos de cada empresa.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="text-center text-lg-start bg-body-tertiary text-muted" id="Contato">
+	  <!-- Section: Social media -->
+	  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+		<!-- Left -->
+		<div class="me-5 d-none d-lg-block">
+		</div>
+
+	  </section>
+
+	  <section class="">
+		<div class="container text-center text-md-start mt-5">
+		  <!-- Grid row -->
+		  <div class="row mt-3">
+			<!-- Grid column -->
+			<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+			  <!-- Content -->
+			  <h6 class="text-uppercase fw-bold mb-4">
+				<img class="img-footer" src="{% static 'base/images/rn-logo-preta.png' %}" alt="">
+			  </h6>
+			  <p>
+				<a href="" class="me-4 text-reset">Termos de uso</a>
+			  </p>
+			  <p>
+				<a href="" class="me-4 text-reset">Política de privacidade</a>
+			  </p>
+			</div>
+			<!-- Grid column -->
+
+			<!-- Grid column -->
+			<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+			  <!-- Links -->
+			  <h6 class="text-uppercase fw-bold mb-4">
+				Redes
+			  </h6>
+			  <p>
+				<i class="fab fa-linkedin"></i>
+				<a href="" class="me-4 text-reset">Linkedin</a>
+			  </p>
+			  <p>
+                <i class="fab fa-instagram"></i>
+				<a href="" class="me-4 text-reset">Instagram</a>
+			  </p>
+			  <p>
+                <i class="fab fa-facebook"></i>
+				<a href="https://www.facebook.com/rosanetotributos/" class="me-4 text-reset">Facebook</a>
+			  </p>
+
+			</div>
+
+			<!-- Grid column -->
+			<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+			  <!-- Links -->
+			  <h6 class="text-uppercase fw-bold mb-4">
+				Localização
+			  </h6>
+			  <p>
+				Av. Governador Flávio Ribeiro Coutinho, 500 <br>
+                Jardim Oceania <br>
+                João Pessoa - PB, 58037-005
+			  </p>
+			  <p>
+
+			  </p>
+			  <p>
+
+			  </p>
+			</div>
+
+			<!-- Grid column -->
+			<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+			  <!-- Links -->
+			  <h6 class="text-uppercase fw-bold mb-4">Contato</h6>
+			  <p>
+				<i class="fas fa-envelope me-3"></i>contato@rosaneto.com</p>
+			  <p><i class="bi bi-whatsapp me-3"></i>+55 (83) 3031-2222</p>
+			  <p><i class="bi bi-whatsapp me-3"></i>+55 (83) 3113-2641</p>
+			</div>
+			<!-- Grid column -->
+		  </div>
+		  <!-- Grid row -->
+		</div>
+	  </section>
+	  <!-- Section: Links  -->
+
+	  <!-- Copyright -->
+	  <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.05);">
+		© 2024 Copyright:
+		<a class="text-reset fw-bold" href="https://mdbootstrap.com/">Vitinho e Thiaguinho</a>
+	  </div>
+	  <!-- Copyright -->
+	</footer>
+	<!-- Footer -->
+
+		<!-- About Section -->
+		{% include 'pages/about.html' %}
+
+{% endblock %}

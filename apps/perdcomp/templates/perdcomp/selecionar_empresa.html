@@ -1,0 +1,175 @@
+<div class="m-4">
+    <div class="d-flex p-4 bg-danger m-4">
+        <div class="bg-info bvalores m-2">
+            <div class="bvalores2 m-4 d-flex align-items-center">
+                <span>CRÉDITO DISPONÍVEL</span>
+                <span>{{ dados_grafico.total_credito|default:0 }}</span>
+            </div>
+        </div>
+        <div class="bg-info bvalores m-2">
+            <div class="bvalores2 m-4 d-flex align-items-center">
+                <span>VALOR UTILIZADO</span>
+                <span>{{ dados_grafico.total_debitos|default:0|floatformat:2 }}</span>
+            </div>
+        </div>
+        <div class="">
+            <form method="GET" action="{% url 'interno_index' %}">
+                <div class="me-4">
+                    <select name="empresa_id" id="empresa" class="form-select" onchange="this.form.submit()">
+                        <option value="">Selecione a empresa</option>
+                        {% for empresa in empresas %}
+                            <option value="{{ empresa.id }}" {% if empresa_selecionada and empresa_selecionada.id == empresa.id %}selected{% endif %}>
+                                {{ empresa.nome }}
+                            </option>
+                        {% empty %}
+                            <option disabled>Não há empresas disponíveis</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center p-4">
+        <div class="d-flex">
+            <div class="d-flex">
+                <div class="">           
+                    <canvas id="graficoComparacao2" width="550" height="350"></canvas>
+                </div>
+                <div>
+                    <script type="text/javascript">
+                        var urlMapping = {
+                            'PER': "{% url 'perfil' user.username %}",
+                            'DCOMP': "{% url 'lista-postagem-forum' %}"
+                        };                       
+                        var myChart = echarts.init(document.getElementById('graficoComparacao2'));
+                        var option = {
+                            title: {
+                                text: 'Crédito x Compensação',
+                                left: 'center',
+                            },
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            legend: {
+                                data: ['PER', 'DCOMP'],
+                                top: '10%',
+                                left: 'center'
+                            },
+                            grid: {
+                                top: '40%',  // Ajustando o gráfico (barras) para baixo
+                                left: '10%',
+                                right: '10%',
+                                bottom: '5%'
+                            },
+                            xAxis: {
+                                data: ['Dados']
+                            },
+                            yAxis: {
+                                axisLine: { show: false},
+                                axisTick: { show: false},
+                                splitLine: { show: false},
+                                axisLabel: { show: false}
+                            },
+                            series: [
+                                {
+                                    name: 'PER',
+                                    type: 'bar',
+                                    data: [parseFloat("{{ dados_grafico.total_credito|default:0 }}".replace(',', '.')) || 0],
+                                    label: {
+                                        show: true,
+                                        position: 'top',
+                                        formatter: function (params) {
+                                            return params.value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                        }
+                                    }
+                                },
+                                {
+                                    name: 'DCOMP',
+                                    type: 'bar',
+                                    data: [parseFloat("{{ dados_grafico.total_debitos|default:0 }}".replace(',','.'))],
+                                    label: {
+                                        show: true,
+                                        position: 'top',
+                                        formatter: function (params) {
+                                            return params.value.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+
+                        myChart.on('click', function (params) {
+                            if (params.componentType === 'series') {
+                                var clickedData = params.data;
+                                var clickedCategory = params.seriesName;
+                                var url = urlMapping[clickedCategory];
+
+                                if (url) {
+                                    window.location.href = url;
+                                } else {
+                                    console.log('Categoria não mapeada: ' + clickedCategory);
+                                }
+
+                                console.log('Você clicou na barra de ' + clickedCategory + ' com valor: ' + clickedData);
+                            }
+                        });
+                        myChart.setOption(option);
+                    </script>
+                </div>
+            </div>
+            
+            <div class="d-flex bg-info">
+                <div class="">           
+                    <canvas id="graficoComparacao" width="550" height="350"></canvas>
+                </div>
+                <div>
+                    <script type="text/javascript">                      
+                        var myChart = echarts.init(document.getElementById('graficoComparacao'));
+                        var option = {
+                            tooltip: {
+                                trigger: 'item'
+                            },
+                            legend: {
+                                top: '5%',
+                                left: 'center'
+                            },
+                            series: [
+                                {
+                                name: 'Access From',
+                                type: 'pie',
+                                radius: ['40%', '70%'],
+                                avoidLabelOverlap: false,
+                                itemStyle: {
+                                    borderRadius: 10,
+                                    borderColor: '#fff',
+                                    borderWidth: 2
+                                },
+                                label: {
+                                    show: false,
+                                    position: 'center'
+                                },
+                                emphasis: {
+                                    label: {
+                                    show: true,
+                                    fontSize: 40,
+                                    fontWeight: 'bold'
+                                    }
+                                },
+                                labelLine: {
+                                    show: false
+                                },
+                                data: [
+                                    { value:[parseFloat("{{ dados_grafico.total_credito|default:0 }}".replace(',', '.')) || 0], name: 'PER' },
+                                    { value:[parseFloat("{{ dados_grafico.total_debitos|default:0 }}".replace(',', '.')) || 0], name: 'DCOMP' },
+                                ]
+                                }
+                            ]
+                            };
+                        myChart.setOption(option);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

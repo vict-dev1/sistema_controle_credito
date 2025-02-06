@@ -1,0 +1,172 @@
+{% extends "base/base.html" %}
+{% block title %}Perfil{% endblock title %}
+{% block content %}
+{% load static %}
+{% include 'components/navbar_interna.html' %}
+
+<div class="vw-100">
+    <div class="paginaperfil container p-4">
+            <div class="card-perfil">
+                <div class="row p-4">
+                    <div class="col-sm-8">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                {% if obj and obj.foto %}
+                                <img src="{{ obj.foto.url }}" class="img-perfil" alt="">
+                                {% else %}
+                                <img src="{% static 'base/images/perfil/foto-padrao.jpg' %}"
+                                    class="img-thumbnail border rounded" alt="">
+                                {% endif %}
+                            </div>
+                            <div class="col">
+                                <h4 class="mt-1 mb-1 text-white">{{ user.first_name}} {{user.last_name}}</h4>
+                                <p class="font-13 text-white">{{obj.ocupacao}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="text-center mt-3 text-sm-end p-0">
+                            <button class="btn btn-light" onclick="location.href='#'">
+                                <i class="fa-regular fa-user"></i> Editar Perfil
+                            </button>
+                            <button class="btn btn-secondary" onclick="location.href='{% url 'criar-postagem-forum' %}'">
+                                <i class="fa-regular fa-envelope mx-2"></i> Fazer chamado
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>       
+            <div class="row mt-1 p-0">
+                <div class="col-xl-6">
+                    <div class="chamados">
+                        <h4 class="chamados-text">Minha atividade</h4>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="">
+                        <div class="chamados">
+                            <h4 class="chamados-text">Meus Chamados</h4>
+                        </div>
+                        <hr>
+                    </div>
+                    <div class=" scrollable-area">    
+                        <!-- Coloca a lista de produtos aqui -->
+                        {% for postagem, form in form_dict.items %}
+                        <div class="mb-3 rounded-3 shadow-sm">
+                            <div class="align-items-center">
+                                <div class="d-flex justify-content-between me-2 ms-2 align-items-center">
+                                    <h5><a class="text-black" href="{% url 'detalhe-postagem-forum' postagem.slug %}">
+                                            {{postagem.titulo}}</a></h5>
+                                    <div class="mt-1">
+
+                                        {% if postagem.usuario == request.user %}
+
+                                        <a class="btn btn-edit-post" data-bs-toggle="modal"
+                                            href="#editarPostagemModal{{postagem.id}}" role="button">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+
+                                        <a class="btn btn-edit-post" data-bs-toggle="modal"
+                                            href="#confirmarExclusaoModal{{postagem.id}}" role="button">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div>
+                                <div class="text-truncate-box ms-2">
+                                    <p class="text-truncate text-black">{{postagem.descricao|truncatechars:230}}</p>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center ms-2">
+                                <div class="align-items-center">
+                                    <small class="text-muted">{{postagem.data_publicacao}}</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% include "forum/modal-form-postagem-forum.html" %}
+                        {% include "forum/modal-deletar-postagem-forum.html" %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="perfil-info">
+                <h2>{{obj.first_name}} {{obj.last_name}}</h2>
+                <p><strong>Data Criação:</strong> {{user.date_joined|date:'d/m/Y'}}</p>
+                <p><strong>Ocupação:</strong> {{obj.ocupacao}}</p>
+                <p><strong>Descrição:</strong> {{obj.descricao}}</p>
+                <p><strong>Genero:</strong> {{obj.genero}}</p>
+                <div class="d-flex gap-3">
+                    <p><strong>Telefone:</strong> {{obj.telefone}}</p>
+                    <p><strong>Cidade:</strong> {{obj.cidade}}</p>
+                    <p><strong>Estado:</strong> {{obj.estado}}</p>
+                </div>
+
+                <button class="btn btn-warning" onclick="location.href='#'">
+                    <i class="fas fa-cog"></i> Editar Perfil
+                </button>
+            </div>
+        </div> -->
+            <hr>
+
+            <!-- <div class="container mt-6">
+                <div class="row g-2 mt-5">
+                    <div class="col-md-4 bg-light">
+                        <form class="hstack gap-1" method="GET" action="?">
+                            <input type="text" name="titulo" class="form-control" placeholder="Buscar por título"
+                                value="{{ request.GET.titulo }}">
+                            <button class="btn btn-outline-secondary" type="submit"><i
+                                    class="fas fa-search"></i></button>
+                            {% if request.GET.titulo %}
+                            <a href="{% url 'perfil' user.username %}" class="link-secondary">Resetar</a>
+                            {% endif %}
+                        </form>
+                    </div>
+                    <div class="col-md-8">
+                        {% for postagem, form in form_dict.items %}
+                        <div class="p-3 mb-3 rounded-3 shadow-sm">
+                            <div class="align-items-center">
+                                <div class="d-flex justify-content-between">
+                                    <h5><a href="{% url 'detalhe-postagem-forum' postagem.slug %}">
+                                            {{postagem.titulo}}</a></h5>
+                                    <div class="div">
+
+                                        {% if postagem.usuario == request.user %}
+
+                                        <a class="btn btn-warning" data-bs-toggle="modal"
+                                            href="#editarPostagemModal{{postagem.id}}" role="button">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+
+                                        <a class="btn btn-danger" data-bs-toggle="modal"
+                                            href="#confirmarExclusaoModal{{postagem.id}}" role="button">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="text-truncate-box">
+                                    <p class="text-truncate">{{postagem.descricao|truncatechars:230}}</p>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="align-items-center">
+                                    <small class="text-muted">{{postagem.data_publicacao}}</small>
+                                </div>
+                            </div>
+                        </div>
+                        {% include "forum/modal-form-postagem-forum.html" %}
+                        {% include "forum/modal-deletar-postagem-forum.html" %}
+                        {% endfor %}
+                        {% include "components/paginacao.html" %}
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        {% endblock %}
+    </div>
